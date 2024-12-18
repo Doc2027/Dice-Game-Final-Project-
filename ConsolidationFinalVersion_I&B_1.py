@@ -60,30 +60,29 @@ def print_scores(scores):
     for player, score in scores.items():
         print(f"{player}: {score} points")
 
-def game_loop():
-    """Main game loop for managing player turns and determining the winner"""
-    players = []
-    num_players = 2
-    for i in range(num_players):
-        while True:
-            name = input(f"Enter name for Player {i + 1}: ").strip()
-            if name:
-                players.append(name)
-                break
-            print("Name cannot be empty. Please enter a valid name.")
+"""Main game loop for managing player turns and determining the winner"""
+players = []
+num_players = 2
+for i in range(num_players):
+    while True:
+        name = input(f"Enter name for Player {i + 1}: ").strip()
+        if name:
+            players.append(name)
+            break
+        print("Name cannot be empty. Please enter a valid name.")
 
-    scores = {player: 0 for player in players}
-    max_score = MAX_SCORE
+scores = {player: 0 for player in players}
+max_score = MAX_SCORE
 
-    while all(score < max_score for score in scores.values()):
-        for player in players:
-            print(f"\n{player}'s turn!")
-            scores[player] += player_turn(player)
-            print_scores(scores)
+while all(score < max_score for score in scores.values()):
+    for player in players:
+        print(f"\n{player}'s turn!")
+        scores[player] += player_turn(player)
+        print_scores(scores)
 
-            if scores[player] >= max_score:
-                print(f"{player} wins with {scores[player]} points!")
-                return
+        if scores[player] >= max_score:
+            print(f"{player} wins with {scores[player]} points!")
+            break
 
 """Start the game"""
 game_loop()
