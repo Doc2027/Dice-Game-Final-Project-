@@ -85,6 +85,39 @@ def game_loop():
                 print(f"{player} wins with {scores[player]} points!")
                 return
 
-"# Start the game"
+"""Start the game"""
 game_loop()
+
+"""Test functions for every feature"""
+
+def test_roll_dice():
+    """Test roll_dice function for correct output length and range."""
+    result = roll_dice()
+    assert len(result) == NUM_DICE, f"Expected {NUM_DICE} dice, but got {len(result)}."
+    assert all(1 <= val <= DICE_SIDES for val in result), "One or more dice rolled out of range."
+    print("test_roll_dice passed!")
+
+def test_check_tuple_out():
+    """Test check_tuple_out function for correct detection of all same values."""
+    assert check_tuple_out([3, 3, 3]) == True, "Failed: Dice with the same values should return True."
+    assert check_tuple_out([3, 2, 3]) == False, "Failed: Dice with different values should return False."
+    print("test_check_tuple_out passed!")
+
+def test_fix_dice():
+    """Test fix_dice function to separate fixed and unfixed dice."""
+    fixed, unfixed = fix_dice([3, 3, 4])
+    assert fixed == [3, 3], f"Expected fixed dice [3, 3], but got {fixed}."
+    assert unfixed == [4], f"Expected unfixed dice [4], but got {unfixed}."
+
+    fixed, unfixed = fix_dice([1, 2, 3])
+    assert fixed == [], "Expected no fixed dice when all are different."
+    assert unfixed == [1, 2, 3], "Expected all dice as unfixed when no values match."
+    print("test_fix_dice passed!")
+
+if __name__ == "__main__":
+    # Run all tests
+    test_roll_dice()
+    test_check_tuple_out()
+    test_fix_dice()
+    print("All tests passed successfully!")
 
