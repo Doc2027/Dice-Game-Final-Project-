@@ -1,4 +1,5 @@
 from random import randint
+import time # Importing a time module as a countdown timer
 
 NUM_DICE = 3
 DICE_SIDES = 6
@@ -33,11 +34,20 @@ def player_turn(player_name):
     while re_roll:
         print(f"Fixed dice: {fixed}, Unfixed dice: {unfixed}")
 
-        while True:
+        # Add countdown timer for player decision
+        print("You have 10 seconds to decide whether to re-roll unfixed dice!")
+        start_time = time.time()
+        choice = ""
+
+        while time.time() - start_time < 10:  # 10-second countdown
             choice = input("Re-roll unfixed dice? (yes/no): ").lower()
             if choice in ["yes", "no"]:
                 break
-            print("Invalid input! Please enter 'yes' or 'no'.")
+            print("Invalid input! Please enter 'yes' or 'no'. Hurry up!")
+
+        if not choice:  # Default if time runs out
+            print("Time's up! No re-roll this time.")
+            choice = "no"
 
         if choice != "yes":
             re_roll = False
@@ -55,7 +65,7 @@ def player_turn(player_name):
     return score
 
 def print_scores(scores):
-    """Print the current scores"""
+    """Print the current scores of all the players"""
     print("\nCurrent Scores:")
     for player, score in scores.items():
         print(f"{player}: {score} points")
@@ -84,8 +94,6 @@ while all(score < max_score for score in scores.values()):
             print(f"{player} wins with {scores[player]} points!")
             break
 
-"""Start the game"""
-game_loop()
 
 """Test functions for every feature"""
 
