@@ -1,1 +1,7 @@
 .DS_Store
+*.log
+*~
+.Rhistory
+__Pycache__
+.vscode
+.DS_Store
