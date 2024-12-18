@@ -1,5 +1,6 @@
 from random import randint
 import time # Importing a time module as a countdown timer
+import pandas as pd
 
 NUM_DICE = 3
 DICE_SIDES = 6
@@ -93,6 +94,17 @@ while all(score < max_score for score in scores.values()):
         if scores[player] >= max_score:
             print(f"{player} wins with {scores[player]} points!")
             break
+
+"""Logging the final scores into a dataframe"""
+# Log final scores into a DataFrame
+final_scores = pd.DataFrame({"Player": list(scores.keys()), "Score": list(scores.values())})
+
+print("\nFinal Scores Table:")
+print(final_scores)
+
+print("\nScore Statistics:")
+print(f"Highest Score: {final_scores['Score'].max()}")
+print(f"Average Score: {final_scores['Score'].mean():.2f}")
 
 
 """Test functions for every feature"""
