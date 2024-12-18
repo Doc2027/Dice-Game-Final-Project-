@@ -1,0 +1,4 @@
+git status isnt updating, according to update of previously addedtext file
+
+going off submition requirement, the final project code i add
+ed was from consolidation project, next i will add my readme file from the consolidation project
